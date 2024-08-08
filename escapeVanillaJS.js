@@ -5,18 +5,18 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(books => {
                 const mostRecentBook = findMostRecentBook(books);
-                // 🪲 Bug: Incorrect element ID
+                // 🪲 Bug: Incorrect element ID, it was supposed to be room1Result not resultRoom1
                 document.getElementById("room1Result").textContent = `The key to the next room is: ${mostRecentBook.title}`;
             });
     });
 
     document.getElementById("solveRoom2").addEventListener("click", () => {
-        const jsConcepts = new Set(['closure', 'scope', 'hoisting']);
-        // 🪲 Bug: What's mssing from JS concepts?
+        const jsConcepts = new Set(['closure', 'scope', 'hoisting', 'async']);
+        // 🪲 Bug: What's mssing from JS concepts? common would be async
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
         const commonConcepts = findIntersection(jsConcepts, jsConcepts);
-        document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
+        document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(reactConcepts).join(', ')}`;
     });
 
     // 🪲 Bug: Asynchronous function ?
@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function findMostRecentBook(books) {
-    // 🪲 Bug: Logic error
-    return books.reduce((mostRecent, book) => new Date(book.published) < new Date(mostRecent.published) ? book : mostRecent);
+    // 🪲 Bug: Logic error > was the wrong direction 
+    return books.reduce((mostRecent, book) => new Date(book.published) > new Date(mostRecent.published) ? book : mostRecent);
 }
 
 function findIntersection(setA, setB) {
@@ -47,7 +47,7 @@ function findIntersection(setA, setB) {
 async function navigateLabyrinth(directions) {
     for (let direction of directions) {
         // 🪲 Bug: No delay
-        new Promise(resolve => setTimeout(resolve, 1000));
+        new Promise(resolve => setTimeout(resolve, 5000));
         console.log(`Navigating: ${direction.step}`);
     }
     return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
