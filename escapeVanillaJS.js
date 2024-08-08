@@ -15,8 +15,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // 🪲 Bug: What's mssing from JS concepts? common would be async
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
-        const commonConcepts = findIntersection(jsConcepts, jsConcepts);
-        document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(reactConcepts).join(', ')}`;
+        const commonConcepts = findIntersection(jsConcepts, reactConcepts);
+        document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
 
     // 🪲 Bug: Asynchronous function ?
