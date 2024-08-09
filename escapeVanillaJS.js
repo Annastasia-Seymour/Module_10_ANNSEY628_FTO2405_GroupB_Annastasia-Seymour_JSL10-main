@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("solveRoom2").addEventListener("click", () => {
         const jsConcepts = new Set(['closure', 'scope', 'hoisting', 'async']);
-        // 🪲 Bug: What's mssing from JS concepts? common would be async
+        // 🪲 Bug: What's missing from JS concepts? common would be async
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
         // 🪲 Bug: Incorrect function call
         const commonConcepts = findIntersection(jsConcepts, reactConcepts);
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function findMostRecentBook(books) {
-    // 🪲 Bug: Logic error > was the wrong direction 
+    // 🪲 Bug: Logic error < was the wrong direction > 
     return books.reduce((mostRecent, book) => new Date(book.published) > new Date(mostRecent.published) ? book : mostRecent);
 }
 
@@ -44,12 +44,31 @@ function findIntersection(setA, setB) {
     return intersection;//there s probably a shorter way
 }
 
-async function navigateLabyrinth(directions) {
+async function navigateLabyrinth(directions){
+for (let direction of directions){
+    fetch ('directions.json')// already sone in solveRoom3
+        // don't i need to fetch something like the directions from the directions.json file?
+        // i need to put a fetch , and catch the errors
+        // 🪲 Bug: No delay , needs a await
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    console.log (`Navigating: ${direction.step}`);
+}
+return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
+
+}
+
+
+/*async function navigateLabyrinth(directions) {
     for (let direction of directions) {
-        // 🪲 Bug: No delay
-        new Promise(resolve => setTimeout(resolve, 5000));
-        console.log(`Navigating: ${direction.step}`);
+        // don't i need to fetch something like the directions from the directions.json file?
+        // i need to put a fetch , and catch the errors
+        // 🪲 Bug: No delay , needs a await
+       await new Promise(resolve => setTimeout(resolve, 1000));
+        console.log(`Navigating: ${direction.step}`);// i need to correct console log that shows 'Navigating EscapeVanilla.js: Enter the labyrinth.'
+           
     }
     return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
-}
+}*/
+
+  
 
