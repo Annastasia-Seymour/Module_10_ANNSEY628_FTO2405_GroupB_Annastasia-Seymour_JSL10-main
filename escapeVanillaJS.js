@@ -56,7 +56,7 @@ function findIntersection(setA, setB) {
 async function navigateLabyrinth(directions){
 for (let direction of directions){
         // don't i need to fetch something like the directions from the directions.json file?
-        // i need to put a fetch , and catch the errors , done on line 24
+        // found fetch() , then(), and catch() the errors , done on line 24
         // 🪲 Bug: No delay , needs a await
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log (`${direction.step}`)// i need to correct console log that shows 'Navigating EscapeVanilla.js: Enter the labyrinth.'
