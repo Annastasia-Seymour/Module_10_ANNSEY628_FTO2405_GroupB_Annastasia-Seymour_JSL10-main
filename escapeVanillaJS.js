@@ -22,16 +22,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // 🪲 Bug: Asynchronous function ?
     document.getElementById("solveRoom3").addEventListener("click", () => {
         fetch('directions.json') 
-            .then(response => response.json())
-            .then(directions => {
-                navigateLabyrinth(directions)
-                    .then(message => {
-                        // 🪲 Bug: Incorrect method
-                        document.getElementById("room3Result").innerHTML = message;
-                    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch directions');
+            }
+            return response.json();
+        })
+        .then(directions => {
+                return navigateLabyrinth(directions);})
+        .then(message => {
+            document.getElementById("room3Result").innerHTML = message;
+        })
+        // 🪲 Bug: Incorrect method
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById("room3Result").innerHTML = 'An error occurred while navigating the labyrinth.';
             });
+        });
     });
-});
+;
 
 function findMostRecentBook(books) {
     // 🪲 Bug: Logic error < was the wrong direction > 
@@ -46,29 +55,9 @@ function findIntersection(setA, setB) {
 
 async function navigateLabyrinth(directions){
 for (let direction of directions){
-    fetch ('directions.json')// already sone in solveRoom3
         // don't i need to fetch something like the directions from the directions.json file?
-        // i need to put a fetch , and catch the errors
+        // i need to put a fetch , and catch the errors , done on line 24
         // 🪲 Bug: No delay , needs a await
     await new Promise(resolve => setTimeout(resolve, 1000));
-    console.log (`Navigating: ${direction.step}`);
-}
-return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
-
-}
-
-
-/*async function navigateLabyrinth(directions) {
-    for (let direction of directions) {
-        // don't i need to fetch something like the directions from the directions.json file?
-        // i need to put a fetch , and catch the errors
-        // 🪲 Bug: No delay , needs a await
-       await new Promise(resolve => setTimeout(resolve, 1000));
-        console.log(`Navigating: ${direction.step}`);// i need to correct console log that shows 'Navigating EscapeVanilla.js: Enter the labyrinth.'
-           
-    }
-    return "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
-}*/
-
-  
-
+    console.log (`${direction.step}`)// i need to correct console log that shows 'Navigating EscapeVanilla.js: Enter the labyrinth.'
+    ;}}
