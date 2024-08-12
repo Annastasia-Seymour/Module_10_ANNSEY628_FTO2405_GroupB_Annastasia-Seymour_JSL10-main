@@ -60,4 +60,6 @@ for (let direction of directions){
         // 🪲 Bug: No delay , needs a await
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log (`${direction.step}`)// i need to correct console log that shows 'Navigating EscapeVanilla.js: Enter the labyrinth.'
-    ;}}
+    ;}
+return  document.getElementById("room3Result").innerHTML = "Congratulations! You've mastered the essentials of Vanilla JavaScript. Welcome to the world of React, where you'll build powerful and dynamic web applications. Let's dive in!";
+}
